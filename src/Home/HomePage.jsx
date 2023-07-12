@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
-interface Entry {
-    title: string;
-    description: string;
-    programType: string;
-    images: {
-      "Poster Art": {
-        url: string;
-        width: number;
-        height: number;
-      };
-    };
-    releaseYear: number;
-  }
+import Movie from '../Movie/Movie';
+import Profile from '../Profile/Profile';
   
 function App() {
-  const [movies, setMovies] = useState<Entry[]>([]);
+  const [movies, setMovies] = useState>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -40,18 +28,13 @@ function App() {
   return (
     <div>
       <h1>All the Movies</h1>
+      <Profile />
       <span>
         Total: {movies.length}
       </span>
       <ul>
         {movies.map(movie => (
-          <li key={movie.title}>
-            <h2>{movie.title}</h2>
-            <p>{movie.description}</p>
-            <p>Program Type: {movie.programType}</p>
-            <p>Release Year: {movie.releaseYear}</p>
-            <img src={movie.images['Poster Art'].url} alt={movie.title} />
-          </li>
+          <Movie key={movie.title} movie={movie} />
         ))}
       </ul>
     </div>
