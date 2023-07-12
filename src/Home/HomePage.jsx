@@ -6,6 +6,7 @@ import Profile from '../Profile/Profile';
   const [movies, setMovies] = useState>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [sortOption, setSortOption] = useState('name');
 
   useEffect(() => {
     fetchData();
@@ -33,36 +34,63 @@ import Profile from '../Profile/Profile';
     return true;
   });
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const sortedMovies = filteredMovies.sort((a, b) => {
+    if (sortOption === 'name') {
+      return a.title.localeCompare(b.title);
+    } else if (sortOption === 'age') {
+      return a.releaseYear - b.releaseYear;
+    }
+    return 0;
+  });
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
 
+  const handleSortOptionChange = (event) => {
+    setSortOption(event.target.value);
+  };
+
+
   return (
     <div>
-      <h1>The Movies</h1>
-      <Profile />
+      { isLoading ? 
+        <p>Loading...</p>
+      : 
       <div>
-        <label>
-          Filter by:
-          <select value={filter} onChange={handleFilterChange}>
-            <option value="all">All</option>
-            <option value="movie">Movie</option>
-            <option value="series">Series</option>
-          </select>
-        </label>
+        <h1>The Movies</h1>
+        <Profile />
+        <section>
+          <div>
+            <label>
+              Filter by:
+              <select value={filter} onChange={handleFilterChange}>
+                <option value="all">All</option>
+                <option value="movie">Movie</option>
+                <option value="series">Series</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Sort by:
+              <select value={sortOption} onChange={handleSortOptionChange}>
+                <option value="name">Name</option>
+                <option value="age">Age</option>
+              </select>
+            </label>
+          </div>
+        </section>
+        <span>
+          Total: {sortedMovies.length}
+        </span>
+        <ul>
+          {sortedMovies.map(movie => (
+            <Movie key={movie.title} movie={movie} />
+          ))}
+        </ul>
       </div>
-      <span>
-        Total: {filteredMovies.length}
-      </span>
-      <ul>
-        {filteredMovies.map(movie => (
-          <Movie key={movie.title} movie={movie} />
-        ))}
-      </ul>
+      }
     </div>
   );
 }
