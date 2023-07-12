@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Movie from '../Movie/Movie';
 import Profile from '../Profile/Profile';
   
-function App() {
+  const HomePage = () => {
   const [movies, setMovies] = useState>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -41,4 +41,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;
