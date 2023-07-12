@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../Login/loginOutButton";
+import LogoutButton from "../Login/LogOutButton";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
