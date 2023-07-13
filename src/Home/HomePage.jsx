@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Movie from '../Movie/Movie';
 import Profile from '../Profile/Profile';
+import jsonFile from '../Data/data.json'
   
   const HomePage = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([jsonFile]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [sortOption, setSortOption] = useState('name');
@@ -14,13 +15,13 @@ import Profile from '../Profile/Profile';
 
   const fetchData = async () => {
     try {
-      const response = await fetch('/Data/Data.json');
+      const response = await fetch(jsonFile);
       const json = await response.json();
-      setMovies(json.entries);
-      setIsLoading(false);
+      setMovies(json?.entries || []);
     } catch (error) {
-      console.log('Error fetching data:', error);
+      console.log('Error fetching data:');
     }
+    setIsLoading(false);
   };
 
   const filteredMovies = movies.filter((movie) => {
