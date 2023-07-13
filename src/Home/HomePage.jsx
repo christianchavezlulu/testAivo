@@ -5,30 +5,17 @@ import jsonFile from '../Data/data.json'
   
   const HomePage = () => {
     //Creat states for distint functionalities
-    const [movies, setMovies] = useState([jsonFile]);
+    const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [filter, setFilter] = useState('all');
     const [sortOption, setSortOption] = useState('name');
 
     useEffect(() => {
-      // Set fetching(fetchData()) in useEffect only once; when the component is rendering
-      fetchData();
-    }, []);
-
-    const fetchData = async () => {
-      try {
-      // Step 1: Fetch the JSON file from the specified URL
-        const response = await fetch(jsonFile);
-        // Step 2: Parse the response as JSON
-        const json = await response.json();
-        // Step 3: Update the movies state with the fetched data or an empty array if it is undefined
-        setMovies(json?.entries || []);
-      } catch (error) {
-        console.log('Error fetching data:');
-      }
-      // Step 4: Set isLoading to false to indicate that data fetching is complete
+      // Set fetching data in useEffect only once; when the component is rendering
+      setMovies(jsonFile.entries);
+      console.log(jsonFile.entries, 'jsonFile.entries')
       setIsLoading(false);
-    };
+    }, []);
 
     // Set the filering functionality
     const filteredMovies = movies.filter((movie) => {
@@ -92,11 +79,9 @@ import jsonFile from '../Data/data.json'
             <span>
               Total: {sortedMovies.length}
             </span>
-            <ul>
-              {sortedMovies.map(movie => (
-                <Movie key={movie.title} movie={movie} />
-              ))}
-            </ul>
+            <div>
+              {sortedMovies.map(movie => <Movie key={movie?.title} movie={movie} />)}
+            </div>
           </div>
         )}
       </div>

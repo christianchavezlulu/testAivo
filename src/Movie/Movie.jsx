@@ -1,23 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
-const Movie = ({ title, images }) => {
+const Movie = ({ movie: { title='Without title', images={} } }) => {
+  // Check if the images object and the 'Poster Art' property are defined
+  if (!images || !images['Poster Art']) {
+    return null; // If not, return null or a placeholder component
+  }
+
+  const { url } = images['Poster Art'];
+
   return (
-    <li>
+    <div>
         <h2>{title}</h2>
-        <img src={images['Poster Art'].url} alt={title} />
-    </li>
+        <img src={url} alt={title} />
+    </div>
   )
 }
 
 Movie.propTypes = {
-  title: PropTypes.string.isRequired,
-  images: PropTypes.shape({
-    'Poster Art': PropTypes.shape({
-      url: PropTypes.string.isRequired,
-    }).isRequired,
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    images: PropTypes.shape({
+      'Poster Art': PropTypes.shape({
+        url: PropTypes.string.isRequired,
+      }),
+    }),
   }).isRequired,
 };
-
 
 export default Movie;
