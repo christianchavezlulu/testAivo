@@ -1,8 +1,5 @@
 import LoginButton from './LoginButton';
-const LoginPage = () => {
-  return (
-    <LoginButton />
-  );
-}
+
+const LoginPage = () => <LoginButton />
 
 export default LoginPage;

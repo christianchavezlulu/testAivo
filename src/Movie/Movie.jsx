@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const Movie = ({ title, images }) => {
   return (
@@ -8,5 +9,15 @@ const Movie = ({ title, images }) => {
     </li>
   )
 }
+
+Movie.propTypes = {
+  title: PropTypes.string.isRequired,
+  images: PropTypes.shape({
+    'Poster Art': PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
 
 export default Movie;
