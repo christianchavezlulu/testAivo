@@ -2,6 +2,51 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Moviex
+
+The Moviex is a web application that allows users to browse and discover a collection of movies and TV series. It provides an intuitive interface for filtering and sorting movies based on various criteria, such as genre, release year, and popularity. Users can explore details of each movie, including its title, description, and poster art.
+
+## Features
+
+- Browse and search movies and TV series
+- Filter movies by type (movie or series)
+- Sort movies by name or release year
+- User authentication with login and logout functionality
+- User profiles with personalized information
+
+## Technologies Used
+
+- React: JavaScript library for building user interfaces
+- Material-UI: UI component library for React
+- Auth0: Authentication and authorization platform
+- React testing library: Unit testing of the component
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- NPM (v6 or higher)
+
+### Installation
+
+1. Clone the repository: 
+- git clone https://github.com/your-username/movie-catalog.git
+
+
+2. Install the dependencies: 
+- cd movie-catalog
+- npm install
+
+
+3. Start the development server:
+- npm start
+
+
+4. Open the application in your browser:
+- http://localhost:3000
+
+
 ## Available Scripts
 
 In the project directory, you can run:
