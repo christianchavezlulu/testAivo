@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    maxWidth: 200,
+    width: 250,
     margin: '0 auto',
     border: '1px solid #ccc',
     borderRadius: '4px',
